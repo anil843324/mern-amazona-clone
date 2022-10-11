@@ -1,14 +1,44 @@
-import React from 'react';
-import data from '../data';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 const HomeScreen = () => {
+
+
+  const [products,setProducts]=useState([]);
+
+
+   useEffect(() => {
+    
+    getProducts()
+     
+   }, [])
+   
+  
+   const getProducts= async()=>{
+
+     let result=await fetch('http://localhost:5000/api/products')
+ 
+      result=  await result.json()
+
+     setProducts(result)
+
+   }
+ 
+
+   console.log(products);
+
+
+
+
+
+
   return (
     <div>
       <h1>Featured Products</h1>
 
       <div className=" products  flex  flex-wrap   justify-center  ">
-        {data.products.map((product) => (
+        {products.map((product) => (
           <div
             className="product m-4 border-solid border-[1px] border-[#404040] "
             key={product.slug}

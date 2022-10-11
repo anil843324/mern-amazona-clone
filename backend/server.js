@@ -4,6 +4,9 @@ import  express  from "express";
 import data from "./data.js"
 const app=express();
 
+import  cors from "cors"
+
+app.use( cors());
 
 app.get('/api/products',(req,res)=>{
 
